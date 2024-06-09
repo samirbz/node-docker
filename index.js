@@ -4,16 +4,14 @@ const app = express()
 const redis = require('redis')
 let RedisStore = require('connect-redis').default
 const session = require('express-session')
-const { createClient } = require('redis')
 
 
 
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT, REDIS_URL, SESSION_SECRET, REDIS_PORT } = require("./config/config")
-let redisClient = createClient({
+let redisClient = redis.createClient({
     host: REDIS_URL,
     port: REDIS_PORT
 })
-redisClient.connect().catch(console.error)
 
 const port = process.env.PORT || 4000
 const postRouter = require('./routes/postRoutes')
@@ -48,7 +46,7 @@ app.use(session({
         saveUninitialized: false,
         httpOnly: true,
         maxOnly: true,
-        maxAge: 30000
+        maxAge: 3000000
     }
 }))
 //localhost:4000/api/v1/post/
