@@ -1,5 +1,7 @@
 To start docker container
 - docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+To rebuild image
+- docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 To stop docker container
 - docker compose -f docker-compose.yml -f docker-compose.dev.yml down
 To check logs - this is used to check the exact terminal like listening port , databasec onnect

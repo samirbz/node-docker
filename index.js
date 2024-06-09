@@ -5,6 +5,8 @@ const app = express()
 
 const port = process.env.PORT || 4000
 const postRouter = require('./routes/postRoutes')
+const userRouter = require("./routes/userRoutes")
+
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`
 
 //not best practice to handle all we want to do is dont rely on orchestration docker contaier no one can gurantee that you mongodb is fully running before application starts. make sure your application is intelligent to hadle scenario
@@ -28,6 +30,7 @@ app.get('/', (req, res) => {
 
 //localhost:4000/api/v1/post/
 app.use('/api/v1/posts', postRouter)
+app.use('/api/v1/users', userRouter)
 
 
 app.listen(port, () => {
